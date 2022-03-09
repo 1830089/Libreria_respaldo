@@ -57,13 +57,14 @@
         <div class="d-flex" id="wrapper">
           <!-- Sidebar-->
           <div class="border-end text-dark bg-light" id="sidebar-wrapper">
-              <div class="sidebar-heading text-dark text-center font-weight-bold">Agregar</div>
-              <div class=" bg-light nav flex-column nav-pills list-group list-group-flush" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class=" nav-link active list-group-item list-group-item-action list-group-item-dark p-3" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-book font-weight-bold"> Libro</i></a>
-                <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <i class="fas fa-user-edit font-weight-bold"> Autor</i></a>
-                <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="far fa-newspaper font-weight-bold"> Editorial</i></a>
-              </div>
-          </div>
+            <div class="sidebar-heading text-dark text-center font-weight-bold">Agregar</div>
+            <div class=" bg-light nav flex-column list-group">
+              <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarLibro-admin.index')}}"><i class="fas fa-book font-weight-bold"> Libro</i></a>
+              <a class=" nav-link active list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarAutor-admin.index')}}" role="tab" aria-controls="v-pills-profile" aria-selected="true"> <i class="fas fa-user-edit font-weight-bold"> Autor</i></a>
+              <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarEditorial-admin.index')}}" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="far fa-newspaper font-weight-bold"> Editorial</i></a>
+              <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarCategoria-admin.index')}}" role="tab" aria-controls="v-pills-categorias" aria-selected="false"><i class="fas fa-th-large font-weight-bold"> Categorias</i></a>
+            </div>
+        </div>
           <!-- Page content wrapper-->
           <div id="page-content-wrapper">
               <!-- Page content-->
@@ -73,45 +74,18 @@
                     <div class="col-md-12">
                       <div class="panel panel-default shadow-lg p-3 mb-5 bg-white rounded m-2">
                         <div class="panel-title">
-                          <h2 class="text-center  font-weight-bold text-dark py-1"> <i class="fas fa-book"> Agregar libro</i></h1>  
-                        </div>
-                        <div class="panel-body py-2">
-                          <form action="">
-                            <div class="mb-4">
-                              <label for="isbn" class="form-label text-dark">Isbn</label>
-                              <input type="number" class="form-control" name="isbn">
-                          </div>
-                          <div class="mb-4">
-                            <label for="titulo" class="form-label text-dark">Título</label>
-                             <input type="text" class="form-control" name="titulo">
+                            <h2 class="text-center  font-weight-bold text-dark py-1"><i class="fas fa-user-edit font-weight-bold"> Agregar autor</i></h1>  
                             </div>
+                        <div class="panel-body py-2">
+                          <form action="{{route('agregarAutor-admin.store')}}" method="POST">
+                            @csrf
                             <div class="mb-4">
-                              <label for="autor" class="form-label text-dark">Autor</label>
-                              <select name="autor" class="custom-select">
-                                <option value="value1">Value 1</option>
-                                <option value="value2">Value 2</option>
-                                <option value="value3">Value 3</option>
-                              </select>
-                              </div>
-                              <div class="mb-4">
-                                <label for="editorial" class="form-label text-dark">Editorial</label>
-                                <select name="editorial" class="custom-select">
-                                  <option value="value1">Value 1</option>
-                                  <option value="value2">Value 2</option>
-                                  <option value="value3">Value 3</option>
-                                </select>
-                                </div>
-                                <div class="mb-4">
-                                  <label for="precio" class="form-label text-dark">Precio</label>
-                                   <input type="number" class="form-control" name="precio">
-                                  </div>
-                                  <div class="mb-4">
-                                    <label for="cantidad" class="form-label text-dark">Cantidad</label>
-                                     <input type="number" class="form-control" name="cantidad">
-                                    </div>
-                                    <div class="d-grid">
-                                      <button type="submit" class="btn btn-secondary">Guardar Datos</button>
-                                      </div>
+                                <label for="isbn" class="form-label text-dark">Nombre autor</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                            <div class="d-grid">
+                            <button type="submit" class="btn btn-secondary">Guardar Datos</button>
+                            </div>
                           </form>
                         </div>
                       </div>
@@ -146,7 +120,7 @@
                         <div class="panel-body py-2">
                           <form action="">
                             <div class="mb-4">
-                              <label for="isbn" class="form-label text-dark">Nombre Editorial</label>
+                              <label for="isbn" class="form-label text-dark">Nombre editorial</label>
                               <input type="number" class="form-control" name="isbn">
                           </div>
                           <div class="d-grid">
@@ -156,6 +130,28 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+
+
+                  <div class="tab-pane fade" id="v-pills-categorias" role="tabpanel" aria-labelledby="v-pills-categorias-tab">
+                    <div class="col-md-12">
+                      <div class="panel panel-default shadow-lg p-3 mb-5 bg-white rounded m-2">
+                        <div class="panel-title">
+                          <h2 class="text-center  font-weight-bold text-dark py-1"><i class="fas fa-th-large font-weight-bold"> Agregar categoria</i></h1>  
+                        </div>
+                        <div class="panel-body py-2">
+                          <form action="">
+                            <div class="mb-4">
+                              <label for="isbn" class="form-label text-dark">Nombre categoria</label>
+                              <input type="number" class="form-control" name="isbn">
+                          </div>
+                          <div class="d-grid">
+                          <button type="submit" class="btn btn-secondary">Guardar Datos</button>
+                          </div>
+                          </form>
+                        </div>
+                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -182,6 +178,20 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css"></script>
 
+
+
+@if (session('agregado')== 'ok')
+
+        <script>
+          Swal.fire(
+        'Agregado con exito!',
+        'El autor se agrego exitosamente.',
+        'success')
+        </script>
+            
+        @endif
     </body>
 </html>

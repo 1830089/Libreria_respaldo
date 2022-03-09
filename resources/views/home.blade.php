@@ -60,44 +60,39 @@
           <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center justify-content-center align-self-center">
-                    <h1> Titulo del libro</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, laudantium?</p>
-                    <a href="{{route('descripcion.index')}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
+                    <p class="titulo-letra">{{$busqueda->nombre_libro}}</p>
+                    <p>{{substr($busqueda->descripcion,0,200);}}</p>
+                    <a href="{{route('descripcion.index',$busqueda->id)}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
                 </div>
-                <div class="col-md-6">
-                  <img class="d-block w-65" src="../Images/ejemplolibro.jpg" alt="First slide"> 
+                <div class="col-6 m-0 py-0">
+                  <img class="img2" src="{{$busqueda->ruta}}" alt="First slide"> 
                </div>
             </div>
         </div>
         </div>
+        
+
+
+        @foreach ($libross as $libre)
+            
+        
         <div class="carousel-item">
           <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center justify-content-center align-self-center">
-                    <h1> Titulo del libro</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, laudantium?</p>
-                    <a href="{{route('descripcion.index')}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
+                <div class="col-6 text-center justify-content-center align-self-center m-0">
+                    <p class="titulo-letra"> {{$libre->nombre_libro}}</p>
+                    <p>{{substr($libre->descripcion, 0, 200);}}</p>
+                    <a href="{{route('descripcion.index', $libre->id)}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
                 </div>
-                <div class="col-md-6">
-                  <img class="d-block w-65" src="../Images/ejemplolibro.jpg" alt="First slide"> 
+                <div class="col-6">
+                  <img class="img2" src="{{$libre->ruta}}" alt="Imagen Libro"> 
                </div>
             </div>
         </div>
         </div>
-        <div class="carousel-item">
-          <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center justify-content-center align-self-center">
-                    <h1> Titulo del libro</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, laudantium?</p>
-                    <a href="{{route('descripcion.index')}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
-                </div>
-                <div class="col-md-6">
-                  <img class="d-block w-65" src="../Images/ejemplolibro.jpg" alt="First slide"> 
-               </div>
-            </div>
-        </div>
-        </div>
+
+        @endforeach
+        
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -137,152 +132,33 @@
     <!--features-->
     <section class="py-5">
         <div class="news-cards">
-              <div class="text-center text-dark font-weight-bold">
-                <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-                  <div class="panel-title">
-                    <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-                  </div>
-                  <div class="panel-body py-2">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-                  </div>
-                  <div class="panel-footer align-text-left p-0">
-                      <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-                        <i class="fas fa-credit-card"> Comprar</i>
-                      </a>
-                      <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
-                        <i class="far fa-eye"> Ver más</i>
-                      </a>
-                  </div>
-                </div>
-            </div>
 
-
-            <div class="text-center text-dark font-weight-bold">
-              <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-                <div class="panel-title">
-                  <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-                </div>
-                <div class="panel-body py-2">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-                </div>
-                <div class="panel-footer align-text-left p-0">
-                    <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-                      <i class="fas fa-credit-card"> Comprar</i>
-                    </a>
-                    <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
-                      <i class="far fa-eye"> Ver más</i>
-                    </a>
-                </div>
-              </div>
-          </div>
-          <div class="text-center text-dark font-weight-bold">
-            <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-              <div class="panel-title">
-                <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-              </div>
-              <div class="panel-body py-2">
-                  <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-              </div>
-              <div class="panel-footer align-text-left p-0">
-                  <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-                    <i class="fas fa-credit-card"> Comprar</i>
-                  </a>
-                  <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
-                    <i class="far fa-eye"> Ver más</i>
-                  </a>
+          @foreach ($libros as $libro)
+              
+          <div class="tarjeta bg-light m-0">
+            <div class="row m-0 py-0">
+            <img src="{{$libro->ruta}}">
+            </div>
+            <div class="row m-0 py-0">
+              <div class="col-12 tamanio">
+                <p class="text-center">{{$libro->nombre_libro}}</p>
               </div>
             </div>
-        </div>
-        <div class="text-center text-dark font-weight-bold">
-          <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-            <div class="panel-title">
-              <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-            </div>
-            <div class="panel-body py-2">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-            </div>
-            <div class="panel-footer align-text-left p-0">
-                <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-                  <i class="fas fa-credit-card"> Comprar</i>
-                </a>
-                <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
-                  <i class="far fa-eye"> Ver más</i>
-                </a>
-            </div>
-          </div>
-      </div>
-      <div class="text-center text-dark font-weight-bold">
-        <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-          <div class="panel-title">
-            <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-          </div>
-          <div class="panel-body py-2">
-              <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-          </div>
-          <div class="panel-footer align-text-left p-0">
+            <div class="row">
+            <div class="text-center m-0 py-1 col-12">
               <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
                 <i class="fas fa-credit-card"> Comprar</i>
               </a>
-              <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
+              <a href="{{route('descripcion.index',$libro->id)}}" class="btn btn-outline-warning text-dark">
                 <i class="far fa-eye"> Ver más</i>
               </a>
+            </div>
+            </div>
           </div>
-        </div>
-    </div>
-    <div class="text-center text-dark font-weight-bold">
-      <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-        <div class="panel-title">
-          <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-        </div>
-        <div class="panel-body py-2">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-        </div>
-        <div class="panel-footer align-text-left p-0">
-            <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-              <i class="fas fa-credit-card"> Comprar</i>
-            </a>
-            <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
-              <i class="far fa-eye"> Ver más</i>
-            </a>
-        </div>
-      </div>
-  </div>
-  <div class="text-center text-dark font-weight-bold">
-    <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-      <div class="panel-title">
-        <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-      </div>
-      <div class="panel-body py-2">
-          <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-      </div>
-      <div class="panel-footer align-text-left p-0">
-          <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-            <i class="fas fa-credit-card"> Comprar</i>
-          </a>
-          <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
-            <i class="far fa-eye"> Ver más</i>
-          </a>
-      </div>
-    </div>
-</div>
-<div class="text-center text-dark font-weight-bold">
-  <div class="panel panel-default shadow p-3 mb-5 rounded cartas">
-    <div class="panel-title">
-      <h2 class="align-text-left py-1">Bajo un cielo escarlata</h1>  
-    </div>
-    <div class="panel-body py-2">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/419DHP1fqiL._SY344_BO1,204,203,200_QL70_ML2_.jpg" class="img-responsive" id="img-cards">
-    </div>
-    <div class="panel-footer align-text-left p-0">
-        <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-          <i class="fas fa-credit-card"> Comprar</i>
-        </a>
-        <a href="{{route('descripcion.index')}}" class="btn btn-outline-warning text-dark">
-          <i class="far fa-eye"> Ver más</i>
-        </a>
-    </div>
-  </div>
-</div>
+            @endforeach
+          
+
+
           
       
      

@@ -70,32 +70,41 @@
                         <center><table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width:180px;">Id</th>
                                     <th style="width:180px;">Nombre</th>
                                     <th style="width:180px;">Isbn</th>
                                     <th style="width:180px;">Autor</th>
+                                    <th style="width:180px;">Editorial</th>
+                                    <th style="width:180px;">Categoria</th>
                                     <th style="width:180px;">Cantidad</th>
                                     <th style="width:180px;">Precio</th>
                                 </tr>
                             </thead>
                             <tbody>
+                              @foreach ($libros as $libro)
+                                  
                                 <tr>
-                                    <td>65</td>
-                                    <td>El rey de la selva</td>
-                                    <td>0-7645-2641-3</td>
-                                    <td>Juan Perez</td>
-                                    <td>200</td>
-                                    <td>209$</td>
+                                    <td>{{$libro->nombre_libro}}</td>
+                                    <td>{{$libro->isbn}}</td>
+                                    <td>{{$busqueda_autor->find($libro->autor_id)->nombre_autor}}</td>
+                                    <td>{{$busqueda_editorial->find($libro->editorial_id)->nombre_editorial}}</td>
+                                    <td>{{$busqueda_categoria->find($libro->categoria_id)->nombre_categoria}}</td>
+                                    <td>{{$libro->cantidad_producto}}</td>
+                                    <td>${{$libro->precio}}</td>
                                     <td>
-                                        <a href="" class="text-warning"><i class="fas fa-edit"></i>
-                                        </a>
+                                      <form action="{{route('editarAdmin.index',$libro->id)}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                      </form>
                                     </td>
                                     <td>
-                                      <a href="" class="text-danger"><i class="fas fa-trash-alt"></i>
-                      
-                                      </a>
+                                      <form action="{{route('inventario-eliminar-admin.delete',$libro)}}" method="POST" class="formulario-eliminar">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                      </form>
                                   </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table></center>
 
@@ -113,7 +122,70 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>        
-    
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css"></script>
+
+        @if (session('eliminar')== 'ok')
+
+        <script>
+          Swal.fire(
+        'Eliminado!',
+        'El elemento ha sido eliminado.',
+        'success')
+        </script>
+            
+        @endif
+
+
+
+
+
+        <script>
+          
+          $('.formulario-eliminar').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+    title: '¿Deseas eliminar este libro?',
+    text: " Este libro se eliminara permanentemente de la base de datos",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '¡Si, borralo!',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      /*Swal.fire(
+        'Eliminado!',
+        'El elemento ha sido eliminado.',
+        'success'
+      )*/
+      this.submit();
+    }
+  })
+          });
+          /*Swal.fire({
+    title: '¿Deseas eliminar este elemento del carrito?',
+    text: " ¿Estas seguro de eliminar del carrito?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '¡Si, borralo!',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Eliminado!',
+        'El elemento ha sido eliminado.',
+        'success'
+      )
+    }
+  })*/
+
+  
+</script>
 </body>
 </html>
