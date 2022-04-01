@@ -16,7 +16,9 @@ class DescripcionController extends Controller
         $busqueda_categoria= categoria::find($busqueda->categoria_id);
         $busqueda_autor= autor::find($busqueda->autor_id);
         $busqueda_editorial=editorial::find($busqueda->editorial_id);
-        return view("descripcion", compact('busqueda','busqueda_categoria', 'busqueda_autor', 'busqueda_editorial'));
+
+        $cantidad= $busqueda->cantidad_producto;
+        return view("descripcion", compact('busqueda','busqueda_categoria', 'busqueda_autor', 'busqueda_editorial','cantidad'));
     }
 
 
@@ -26,6 +28,8 @@ class DescripcionController extends Controller
         $busqueda_categoria= categoria::find($busqueda->categoria_id);
         $busqueda_autor= autor::find($busqueda->autor_id);
         $busqueda_editorial=editorial::find($busqueda->editorial_id);
-        return view("descripcionAdmin", compact('busqueda','busqueda_categoria', 'busqueda_autor', 'busqueda_editorial'));
+
+        $cantidad= $busqueda->cantidad_producto;
+        return view("descripcionAdmin", compact('busqueda','busqueda_categoria', 'busqueda_autor', 'busqueda_editorial','cantidad'));
     }
 }

@@ -70,11 +70,26 @@
   <!--fin barra de navegación-->
 
 
+    <!--modo nocturno-->
+
+    <div class="nv-main acomodar">
+      <label id="toggle-label" for="toggle" class="btn btn-secondary">
+        <span><i class="fas fa-sun"></i></span>
+        <input type="checkbox" id="toggle">
+        <span class="slider"></span>
+        <span><i class="fas fa-moon"></i></span>
+      </label>
+    </div>
+  
+  
+    <!--fin modo nocturno-->
+
+
         <div class="container">
             <div class="col-md-12">
-                <div class="panel panel-default shadow-lg p-3 mb-5 bg-white rounded m-2">
+                <div class="panel panel-default shadow-lg p-3 mb-5 rounded m-2 color-diferencial color-negro">
                     <div class="panel-title">
-                        <h2 class="text-center  font-weight-bold text-dark py-1"> Descripción del libro</h1>  
+                        <h2 class="text-center  font-weight-bold py-1"> Descripción del libro</h1>  
                       </div>
                       <div class="panel-body py-2">
                         <div class="row">
@@ -108,29 +123,34 @@
                         </div>
                         </div>
                        </div>
+
+
+
                        <div class="panel-footer p-0">
-                           <div class="container p-0">
-                               <div class="row">
-                            <div class="col-md-6 text-center">
-                            <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-                                <i class="fas fa-credit-card"> Añadir al carrito</i>
-                            </a>
-                            <a href="#" class="btn btn-outline-warning text-dark">
-                                <i class="fas fa-minus"></i>
-                            </a>
-                            <input type="number" class="input-group-sm">
-                            <a href="#" class="btn btn-outline-warning text-dark">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                            </div>
-                            <div class="precio-tm col-6">
-                              <center>
-                                <p>precio SORPRENDE <br> <i class="fas fa-dollar-sign">{{$busqueda->precio}}</i></p>
-                              </center>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+                        <div class="container p-0">
+                            <div class="row">
+                         <div class="col-md-6 text-center">
+                         <form action="">
+                         <a href="#" class="btn btn-outline-success color-negro">
+                             <i class="fas fa-credit-card"> Añadir al carrito</i>
+                         </a>
+
+                       </form>
+
+                       <button class="btn btn-outline-warning color-negro" id="disminuir"><i class="fas fa-minus"></i></button>
+                         <span id="valor" class="btn color-negro cantidad-producto"> 0 </span>
+                       <button class="btn btn-outline-warning color-negro" id="aumentar"><i class="fas fa-plus"></i></button>
+                         </div>
+                         <div class="precio-tm col-6">
+                           <center>
+                             <p>precio SORPRENDE <br> <i class="fas fa-dollar-sign">{{$busqueda->precio}}</i></p>
+                           </center>
+                         </div>
+                     </div>
+                     </div>
+                 </div>
+
+
                 </div>
             </div>
         </div>
@@ -150,6 +170,19 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>        
-</body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="{{asset('../js/modoNocturno.js')}}"></script>
+
+
+
+
+    <script>
+      var cantidad= {!!$cantidad!!};
+    </script>        
+    <script src="{{asset('../js/descripcion.js')}}"></script>        
+
+
+
+
+  </body>
 </html>

@@ -4,9 +4,23 @@
 
 @section('content')
 
-<nav class="nav-main">
+<nav class="nv-main">
     <a class="navbar-brand" href="{{route('home.index')}}"><img src="../Images/LogoMakr-1oya0s.png" alt="icono Sorprende" class="nav-brand col-md-10"></a>
 </nav>
+
+<!--modo nocturno-->
+
+<div class="nv-main acomodar">
+    <label id="toggle-label" for="toggle" class="btn btn-secondary">
+      <span><i class="fas fa-sun"></i></span>
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+      <span><i class="fas fa-moon"></i></span>
+    </label>
+  </div>
+
+
+  <!--fin modo nocturno-->
 <div class="container">
 <div class="row">
     <div class="col-6 mx-auto contenedor-register" id="registro">
@@ -66,5 +80,7 @@
     </div>
 </div>
 </div>
-    
+
+
+    <script src="{{asset('../js/modoNocturno.js')}}"></script>
 @endsection

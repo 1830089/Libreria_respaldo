@@ -35,6 +35,7 @@
     </div>
     <div class="col-md-7">
       <ul class="navbar-nav ml-auto text-light">
+        
         <li class="nav-item active">
           <a class="nav-link" href="{{route('inventario-admin.index')}}"><i class="fas fa-warehouse text-light"> Inventario</i></a>
         </li>
@@ -55,6 +56,19 @@
   </div>
   </nav>
   <!--fin barra de navegación-->
+  <!--modo nocturno-->
+
+  <div class="nv-main acomodar">
+    <label id="toggle-label" for="toggle" class="btn btn-secondary">
+      <span><i class="fas fa-sun"></i></span>
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+      <span><i class="fas fa-moon"></i></span>
+    </label>
+  </div>
+
+
+  <!--fin modo nocturno-->
 
 
   <!--cabecera-->
@@ -67,8 +81,8 @@
             <div class="row">
                 <div class="col-md-6 text-center justify-content-center align-self-center">
                     <p class="titulo-letra">{{$busqueda->nombre_libro}}</p>
-                    <p>{{substr($busqueda->descripcion,0,200);}}</p>
-                    <a href="{{route('descripcionAdmin.index', $busqueda->id)}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
+                    <p class="color-gris">{{substr($busqueda->descripcion,0,200);}}</p>
+                    <a href="{{route('descripcionAdmin.index', $busqueda->id)}}" class="btn btn-outline-dark btn-lg color-gris"> Leer más</a>
                 </div>
                 <div class="col-6 m-0 py-0">
                   <img class="img2" src="{{$busqueda->ruta}}" alt="First slide"> 
@@ -85,8 +99,8 @@
             <div class="row">
                 <div class="col-6 text-center justify-content-center align-self-center m-0">
                     <p class="titulo-letra"> {{$libre->nombre_libro}}</p>
-                    <p>{{substr($libre->descripcion, 0, 200);}}</p>
-                    <a href="{{route('descripcionAdmin.index',$libre->id)}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
+                    <p class="color-gris">{{substr($libre->descripcion, 0, 200);}}</p>
+                    <a href="{{route('descripcionAdmin.index',$libre->id)}}" class="btn btn-outline-dark btn-lg color-gris"> Leer más</a>
                 </div>
                 <div class="col-6">
                   <img class="img2" src="{{$libre->ruta}}" alt="Imagen Libro"> 
@@ -143,22 +157,26 @@
             @foreach ($libros as $libro)
               
 
-            <div class="tarjeta bg-light m-0">
+            <div class="tarjeta m-0">
               <div class="row m-0 py-0">
               <img src="{{$libro->ruta}}">
               </div>
               <div class="row m-0 py-0">
-                <div class="col-12 tamanio">
+                <div class="col-12 tamanio color-negro">
                   <p class="text-center">{{$libro->nombre_libro}}</p>
                 </div>
               </div>
-              <div class="row">
-              <div class="text-center m-0 py-1 col-12">
-                <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-                  <i class="fas fa-credit-card"> Comprar</i>
-                </a>
-                <a href="{{route('descripcionAdmin.index', $libro->id)}}" class="btn btn-outline-warning text-dark">
-                  <i class="far fa-eye"> Ver más</i>
+              <div class="row m-0 py-0">
+              <div class="col-6 tamanio-opciones">
+                <form action="#">
+                  @csrf
+                  <input type="hidden" name="producto_id" value="{{$libro->id}}">
+                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-credit-card color-negro"> Comprar</i></button>
+                </form>
+              </div>
+              <div class="col-6 tamanio-opciones">
+                <a href="{{route('descripcionAdmin.index', $libro->id)}}" class="btn btn-outline-warning">
+                  <i class="far fa-eye color-negro"> Ver más</i>
                 </a>
               </div>
               </div>
@@ -195,6 +213,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
+<script src="{{asset('../js/modoNocturno.js')}}"></script>
 </body>
 </html>

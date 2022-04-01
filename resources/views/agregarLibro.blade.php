@@ -54,10 +54,24 @@
   </nav>
   <!--fin barra de navegación-->
 
+  <!--modo nocturno-->
+
+  <div class="nv-main acomodar">
+    <label id="toggle-label" for="toggle" class="btn btn-secondary">
+      <span><i class="fas fa-sun"></i></span>
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+      <span><i class="fas fa-moon"></i></span>
+    </label>
+  </div>
+
+
+  <!--fin modo nocturno-->
+
         <div class="d-flex" id="wrapper">
           <!-- Sidebar-->
-          <div class="border-end text-dark bg-light" id="sidebar-wrapper">
-              <div class="sidebar-heading text-dark text-center font-weight-bold">Agregar</div>
+          <div class="border-end color-diferencial color-negro" id="sidebar-wrapper">
+              <div class="sidebar-heading text-center font-weight-bold">Agregar</div>
               <div class=" bg-light nav flex-column list-group">
                 <a class=" nav-link active list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarLibro-admin.index')}}"><i class="fas fa-book font-weight-bold"> Libro</i></a>
                 <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarAutor-admin.index')}}" role="tab" aria-controls="v-pills-profile" aria-selected="true"> <i class="fas fa-user-edit font-weight-bold"> Autor</i></a>
@@ -72,23 +86,23 @@
                 <div class="tab-content" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><h1 id="h1">
                     <div class="col-md-12">
-                      <div class="panel panel-default shadow-lg p-3 mb-5 bg-white rounded m-2">
+                      <div class="panel panel-default shadow-lg p-3 mb-5 rounded m-2 color-diferencial color-negro">
                         <div class="panel-title">
-                          <h2 class="text-center  font-weight-bold text-dark py-1"> <i class="fas fa-book"> Agregar libro</i></h1>  
+                          <h2 class="text-center  font-weight-bold py-1"> <i class="fas fa-book color-negro"> Agregar libro</i></h1>  
                         </div>
                         <div class="panel-body py-2">
                           <form action="{{route('agregarLibro-admin.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-4">
-                              <label for="isbn" class="form-label text-dark">Isbn</label>
+                              <label for="isbn" class="form-label">Isbn</label>
                               <input type="text" class="form-control" name="isbn">
                           </div>
                           <div class="mb-4">
-                            <label for="titulo" class="form-label text-dark">Título</label>
+                            <label for="titulo" class="form-label">Título</label>
                              <input type="text" class="form-control" name="titulo">
                             </div>
                             <div class="mb-4">
-                              <label for="autor" class="form-label text-dark">Autor</label>
+                              <label for="autor" class="form-label">Autor</label>
                               <select name="autor" class="custom-select">
                                 
                                 @foreach ($autores as $autor)
@@ -98,7 +112,7 @@
                               </select>
                               </div>
                               <div class="mb-4">
-                                <label for="editorial" class="form-label text-dark">Editorial</label>
+                                <label for="editorial" class="form-label">Editorial</label>
                                 <select name="editorial" class="custom-select">
                                   @foreach ($editoriales as $editorial)
                                   <option value="{{$editorial->id}}">{{$editorial->nombre_editorial}}</option>
@@ -106,7 +120,7 @@
                                 </select>
                                 </div>
                                 <div class="mb-4">
-                                  <label for="categoria" class="form-label text-dark">Categoria</label>
+                                  <label for="categoria" class="form-label">Categoria</label>
                                   <select name="categoria" class="custom-select">
                                     @foreach ($categorias as $categoria)
                                     <option value="{{$categoria->id}}">{{$categoria->nombre_categoria}}</option>
@@ -114,15 +128,15 @@
                                   </select>
                                   </div>
                                 <div class="mb-4">
-                                  <label for="precio" class="form-label text-dark">Precio</label>
+                                  <label for="precio" class="form-label">Precio</label>
                                    <input type="number" step="0.01" class="form-control" name="precio">
                                   </div>
                                   <div class="mb-4">
-                                    <label for="cantidad" class="form-label text-dark">Cantidad</label>
+                                    <label for="cantidad" class="form-label">Cantidad</label>
                                      <input type="number" class="form-control" name="cantidad">
                                     </div>
                                     <div class="mb-4">
-                                      <label for="description" class="form-label text-dark">Descripción</label>
+                                      <label for="description" class="form-label">Descripción</label>
                                        <textarea class="form-control" name="description" rows="8"></textarea>
                                       </div>
                                     <div class="mb-4">
@@ -150,7 +164,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css"></script>
-
+<script src="{{asset('../js/modoNocturno.js')}}"></script>
 
 
 @if (session('agregado')== 'ok')

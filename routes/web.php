@@ -44,6 +44,16 @@ Route::get('/logout',[SessionController::class, 'destroy'])
 Route::get('/carrito',[CarritoController::class, 'create'])->name('carrito.index')
 ->middleware('auth');
 
+Route::post('/carrito-agregar',[CarritoController::class, 'add'])->name('carrito.agregar')
+->middleware('auth');
+
+Route::post('/carrito-limpiar',[CarritoController::class, 'clear'])->name('carrito.limpiar')
+->middleware('auth');
+
+Route::post('/carrito-remove',[CarritoController::class, 'remover'])->name('carrito.remove')
+->middleware('auth');
+
+
 /*   Rutas descripcion del libro*/
 
 

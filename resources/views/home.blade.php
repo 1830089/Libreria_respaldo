@@ -7,6 +7,7 @@
      <!--barra de navegación NAVBAR-->
 
   <nav class="navbar navbar-expand-lg nv-main text-light nav-main">
+    
     <div class="col-md-2">
     <a class="navbar-brand" href="{{route('home.index')}}"><img src="../Images/LogoMakr-1oya0s.png" alt="logo Sorprende" class="nav-brand"></a>
   </div>
@@ -17,19 +18,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="col-md-7">
       <form class="form-inline my-2 ml-auto nav-right">
-        <input class="form-control-lg mr-sm-2 col-md-10" type="search" placeholder="Buscar" aria-label="Search">
+        <input class="form-control-lg mr-sm-2 col-md-10 borde" type="search" placeholder="Buscar" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
       </form>
     </div>
     <div class="col-md-5">
-      <ul class="navbar-nav ml-auto text-light">
+      <ul class="navbar-nav ml-auto">
         @if(auth()->check())
         <li class="nav-item active">
-          <a class="nav-link" href="{{route('carrito.index')}}"><i class="fas fa-shopping-cart text-light"> Mi Carrito</i></a>
+          <a class="nav-link" href="{{route('carrito.index')}}">
+            @if(count(Cart::getContent()))
+            <i class="fas fa-shopping-cart"> ver carrito <span class="badge badge-danger">{{count(Cart::getContent())}}</span></i>
+            @else
+            <i class="fas fa-shopping-cart"> ver carrito <span class="badge badge-danger"> 0 </span></i>
+            @endif
+          </a>
         </li>
-        <li class="nav-item dropdown text-light">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="far fa-user font-weight-bold text-light "> Mi cuenta</i>
+            <i class="far fa-user font-weight-bold"> Mi cuenta</i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('login.destroy')}}">Cerrar sesión</a>
@@ -37,20 +44,36 @@
         </li>
         @else
         <li class="nav-item active">
-          <a class="nav-link" href="{{route('carrito.index')}}"><i class="fas fa-shopping-cart text-light"> Mi Carrito</i></a>
+          <a class="nav-link" href="{{route('carrito.index')}}">
+            <i class="fas fa-shopping-cart"> Mi Carrito</i>
+          </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{{ route('login.index') }}"><i class="far fa-user font-weight-bold text-light"> Inicia sesión</i></a>
+          <a class="nav-link" href="{{ route('login.index') }}"><i class="far fa-user font-weight-bold"> Inicia sesión</i></a>
         </li>
         @endif
       </ul>
+      
     </div>
     </div>
   </div>
   </nav>
   <!--fin barra de navegación-->
 
+  <!--modo nocturno-->
 
+  <div class="nv-main acomodar">
+    <label id="toggle-label" for="toggle" class="btn btn-secondary">
+      <span><i class="fas fa-sun"></i></span>
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+      <span><i class="fas fa-moon"></i></span>
+    </label>
+  </div>
+
+
+  <!--fin modo nocturno-->
+ 
   <!--cabecera-->
   <header class="main-header py-5 contenedor">
 
@@ -61,10 +84,10 @@
             <div class="row">
                 <div class="col-md-6 text-center justify-content-center align-self-center">
                     <p class="titulo-letra">{{$busqueda->nombre_libro}}</p>
-                    <p>{{substr($busqueda->descripcion,0,200);}}</p>
-                    <a href="{{route('descripcion.index',$busqueda->id)}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
+                    <p class="color-gris">{{substr($busqueda->descripcion,0,200);}}</p>
+                    <a href="{{route('descripcion.index',$busqueda->id)}}" class="btn btn-outline-dark btn-lg color-gris"> Leer más</a>
                 </div>
-                <div class="col-6 m-0 py-0">
+                <div class="col-6 m-0 py-0 fondo">
                   <img class="img2" src="{{$busqueda->ruta}}" alt="First slide"> 
                </div>
             </div>
@@ -81,8 +104,8 @@
             <div class="row">
                 <div class="col-6 text-center justify-content-center align-self-center m-0">
                     <p class="titulo-letra"> {{$libre->nombre_libro}}</p>
-                    <p>{{substr($libre->descripcion, 0, 200);}}</p>
-                    <a href="{{route('descripcion.index', $libre->id)}}" class="btn btn-outline-dark btn-lg"> Leer más</a>
+                    <p class="color-gris">{{substr($libre->descripcion, 0, 200);}}</p>
+                    <a href="{{route('descripcion.index', $libre->id)}}" class="btn btn-outline-dark btn-lg color-gris"> Leer más</a>
                 </div>
                 <div class="col-6">
                   <img class="img2" src="{{$libre->ruta}}" alt="Imagen Libro"> 
@@ -135,22 +158,26 @@
 
           @foreach ($libros as $libro)
               
-          <div class="tarjeta bg-light m-0">
+          <div class="tarjeta m-0">
             <div class="row m-0 py-0">
             <img src="{{$libro->ruta}}">
             </div>
             <div class="row m-0 py-0">
-              <div class="col-12 tamanio">
+              <div class="col-12 tamanio color-negro">
                 <p class="text-center">{{$libro->nombre_libro}}</p>
               </div>
             </div>
-            <div class="row">
-            <div class="text-center m-0 py-1 col-12">
-              <a href="{{route('carrito.index')}}" class="btn btn-outline-success text-dark">
-                <i class="fas fa-credit-card"> Comprar</i>
-              </a>
-              <a href="{{route('descripcion.index',$libro->id)}}" class="btn btn-outline-warning text-dark">
-                <i class="far fa-eye"> Ver más</i>
+            <div class="row m-0 py-0">
+            <div class="col-6 tamanio-opciones">
+              <form action="{{route('carrito.agregar')}}" method="POST">
+                @csrf
+                <input type="hidden" name="producto_id" value="{{$libro->id}}">
+                <button type="submit" class="btn btn-outline-success"><i class="fas fa-credit-card color-negro"> Comprar</i></button>
+              </form>
+            </div>
+            <div class="col-6 tamanio-opciones">
+              <a href="{{route('descripcion.index',$libro->id)}}" class="btn btn-outline-warning">
+                <i class="far fa-eye color-negro"> Ver más</i>
               </a>
             </div>
             </div>
@@ -173,4 +200,5 @@
       </div>
     </footer>
   -->
-@endsection
+  
+<script src="{{asset('../js/modoNocturno.js')}}"></script>

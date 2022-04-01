@@ -23,6 +23,7 @@
     
   <!--barra de navegación NAVBAR-->
 
+
   <nav class="navbar navbar-expand-lg nv-main text-light nav-main">
     <div class="col-md-2">
     <a class="navbar-brand" href="{{route('home-admin.index')}}"><img src="../Images/LogoMakr-1oya0s.png" alt="logo Sorprende" class="nav-brand"></a>
@@ -54,6 +55,21 @@
   </nav>
   <!--fin barra de navegación-->
 
+
+  <!--modo nocturno-->
+
+  <div class="nv-main acomodar">
+    <label id="toggle-label" for="toggle" class="btn btn-secondary">
+      <span><i class="fas fa-sun"></i></span>
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+      <span><i class="fas fa-moon"></i></span>
+    </label>
+  </div>
+
+
+  <!--fin modo nocturno-->
+
         <div class="d-flex" id="wrapper">
 
           <!-- Page content wrapper-->
@@ -63,24 +79,24 @@
                 <div class="tab-content" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><h1 id="h1">
                     <div class="col-md-12">
-                      <div class="panel panel-default shadow-lg p-3 mb-5 bg-white rounded m-2">
+                      <div class="panel panel-default shadow-lg p-3 mb-5 rounded m-2 color-diferencial color-negro">
                         <div class="panel-title">
-                          <h2 class="text-center  font-weight-bold text-dark py-1"> <i class="fas fa-book"> Editar libro</i></h1>  
+                          <h2 class="text-center  font-weight-bold py-1"> <i class="fas fa-book"> Editar libro</i></h1>  
                         </div>
                         <div class="panel-body py-2">
                           <form action="{{route('inventario-actualizar-admin.update',$busqueda->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="mb-4">
-                              <label for="isbn" class="form-label text-dark">Isbn</label>
+                              <label for="isbn" class="form-label">Isbn</label>
                               <input type="text" class="form-control" name="isbn" value="{{$busqueda->isbn}}">
                           </div>
                           <div class="mb-4">
-                            <label for="titulo" class="form-label text-dark">Título</label>
+                            <label for="titulo" class="form-label">Título</label>
                              <input type="text" class="form-control" name="titulo" value="{{$busqueda->nombre_libro}}">
                             </div>
                             <div class="mb-4">
-                              <label for="autor" class="form-label text-dark">Autor</label>
+                              <label for="autor" class="form-label">Autor</label>
                               <select name="autor" class="custom-select">
                                 
                                 @foreach ($autores as $autor)
@@ -96,7 +112,7 @@
                               </select>
                               </div>
                               <div class="mb-4">
-                                <label for="editorial" class="form-label text-dark">Editorial</label>
+                                <label for="editorial" class="form-label">Editorial</label>
                                 <select name="editorial" class="custom-select">
                                   @foreach ($editoriales as $editorial)
                                     @if ($busqueda->editorial_id == $editorial->id)
@@ -110,7 +126,7 @@
                                 </select>
                                 </div>
                                 <div class="mb-4">
-                                  <label for="categoria" class="form-label text-dark">Categoria</label>
+                                  <label for="categoria" class="form-label">Categoria</label>
                                   <select name="categoria" class="custom-select">
                                     @foreach ($categorias as $categoria)
                                     @if ($busqueda->categoria_id == $categoria->id)
@@ -124,15 +140,15 @@
                                   </select>
                                   </div>
                                 <div class="mb-4">
-                                  <label for="precio" class="form-label text-dark">Precio</label>
+                                  <label for="precio" class="form-label">Precio</label>
                                    <input type="number" step="0.01" class="form-control" name="precio" value="{{$busqueda->precio}}">
                                   </div>
                                   <div class="mb-4">
-                                    <label for="cantidad" class="form-label text-dark">Cantidad</label>
+                                    <label for="cantidad" class="form-label">Cantidad</label>
                                      <input type="number" class="form-control" name="cantidad" value="{{$busqueda->cantidad_producto}}">
                                     </div>
                                     <div class="mb-4">
-                                      <label for="description" class="form-label text-dark">Descripción</label>
+                                      <label for="description" class="form-label">Descripción</label>
                                        <textarea class="form-control" name="description" rows="8"  >{{$busqueda->descripcion}}</textarea>
                                       </div>
                                     <div class="mb-4">
@@ -158,6 +174,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="{{asset('../js/modoNocturno.js')}}"></script>
 
     </body>
 </html>

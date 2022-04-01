@@ -54,10 +54,24 @@
   </nav>
   <!--fin barra de navegación-->
 
+  <!--modo nocturno-->
+
+  <div class="nv-main acomodar">
+    <label id="toggle-label" for="toggle" class="btn btn-secondary">
+      <span><i class="fas fa-sun"></i></span>
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+      <span><i class="fas fa-moon"></i></span>
+    </label>
+  </div>
+
+
+  <!--fin modo nocturno-->
+
         <div class="d-flex" id="wrapper">
           <!-- Sidebar-->
-          <div class="border-end text-dark bg-light" id="sidebar-wrapper">
-            <div class="sidebar-heading text-dark text-center font-weight-bold">Agregar</div>
+          <div class="border-end color-diferencial color-negro" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center font-weight-bold">Agregar</div>
             <div class=" bg-light nav flex-column list-group">
               <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarLibro-admin.index')}}"><i class="fas fa-book font-weight-bold"> Libro</i></a>
               <a class=" nav-link list-group-item list-group-item-action list-group-item-dark p-3" href="{{route('agregarAutor-admin.index')}}" role="tab" aria-controls="v-pills-profile" aria-selected="true"> <i class="fas fa-user-edit font-weight-bold"> Autor</i></a>
@@ -72,9 +86,9 @@
                 <div class="tab-content" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><h1 id="h1">
                     <div class="col-md-12">
-                      <div class="panel panel-default shadow-lg p-3 mb-5 bg-white rounded m-2">
+                      <div class="panel panel-default shadow-lg p-3 mb-5 rounded m-2 color-diferencial color-negro">
                         <div class="panel-title">
-                            <h2 class="text-center  font-weight-bold text-dark py-1"> <i class="far fa-newspaper font-weight-bold"> Agregar editorial</i></h1>  
+                            <h2 class="text-center  font-weight-bold py-1"> <i class="far fa-newspaper font-weight-bold"> Agregar editorial</i></h1>  
                         </div>
                         <div class="panel-body py-2">
                           <form action="{{route('agregarEditorial-admin.store')}}" method="POST">
@@ -82,7 +96,7 @@
                             @csrf
 
                             <div class="mb-4">
-                                <label for="isbn" class="form-label text-dark">Nombre editorial</label>
+                                <label for="isbn" class="form-label">Nombre editorial</label>
                                 <input type="text" class="form-control" name="name">
                             </div>
                             <div class="d-grid">
@@ -183,6 +197,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css"></script>
+<script src="{{asset('../js/modoNocturno.js')}}"></script>
 
 
 

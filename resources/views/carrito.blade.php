@@ -55,12 +55,31 @@
   </nav>
   <!--fin barra de navegación-->
 
+
+  <!--modo nocturno-->
+
+  <div class="nv-main acomodar">
+    <label id="toggle-label" for="toggle" class="btn btn-secondary">
+      <span><i class="fas fa-sun"></i></span>
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+      <span><i class="fas fa-moon"></i></span>
+    </label>
+  </div>
+
+
+  <!--fin modo nocturno-->
+
+
+
+
         <div class="container">
             <div class="col-md-12">
-                <div class="panel panel-default shadow-lg p-3 mb-5 bg-white rounded m-2">
+                <div class="panel panel-default shadow-lg p-3 mb-5 rounded m-2 color-diferencial color-negro">
                     <div class="panel-title">
-                        <h2 class="text-center  font-weight-bold text-dark py-1"> <i class="fas fa-shopping-cart"> Mi carrito</i></h1>  
+                        <h2 class="text-center  font-weight-bold py-1"> <i class="fas fa-shopping-cart"> Mi carrito</i></h1>  
                       </div>
+                      @if(Cart::getContent())
                       <div class="panel-body py-2">
                         <center><table class="table table-striped align-items-center">
                             <thead>
@@ -68,45 +87,58 @@
                                     <th style="width:180px;"></th>
                                     <th style="width:180px;">Titulo</th>
                                     <th style="width:180px;">cantidad</th>
+                                    <th style="width:180px;">precio</th>
                                     <th style="width:180px;"></th>
                       
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><center><img class="d-block" height="150px" src="../Images/juegoTronos.png" alt="First slide"><center></td>
-                                    <td>Juego de Tronos</td>
-                                    <td>02</td>
-                                    <td>
-                                        <a href="" class="text-dark btn btn-outline-danger"><i class="fas fa-trash-alt"></i>
-                      
-                                        </a>
-                                    </td>
-                                </tr>
+                              @foreach (Cart::getContent() as $producto)
 
-                                <tr>
-                                    <td><center><img class="d-block" height="150px" src="../Images/ejemplolibro.jpg" alt="First slide"><center></td>
-                                    <td>Un mundo invertido</td>
-                                    <td>03</td>
-                                    <td>
-                                        <a href="" class="text-dark btn btn-outline-danger"><i class="fas fa-trash-alt"></i>
-                      
-                                        </a>
-                                    </td>
-                                </tr>
+                              <tr>
+                                <td><center><img class="d-block" height="150px" src="{{$producto->attributes['urlfoto']}}" alt="First slide"><center></td>
+                                <td>{{$producto->name}}</td>
+                                <td>{{$producto->quantity}}</td>
+                                <td>${{$producto->price*$producto->quantity}}</td>
+                                <td>
+                                  <form action="{{route('carrito.remove')}}" method="POST" class="formulario-eliminar-carrito">
+                                    @csrf
+                                  <input type="hidden" name="producto_id" value="{{$producto->id}}">
+                                  <button type="submit" class="btn btn-outline-danger color-negro"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                                    
+                                </td>
+                            </tr>
+                            <input type="hidden" name="subtotal_carrito" value="{{$subtotal+= ($producto->price*$producto->quantity)}}">
+                              @endforeach
+                                
                             </tbody>
                         </table></center>
                        </div>
+                       @else
+
+                       <div class="panel-body py-2">
+                         <th colspan="5"> NO HAY NINGUN ARTICULO EN EL CARRITO</th>
+                       </div>
+                       @endif
                        <div class="panel-footer p-0 border-top">
                            <div class="container">
                                <div class="col-md-12 text-center">
-                                   <p class="font-weight-bold"><h3>Subtotal del carrito:</h3><h2>$1300</h2></p>
-                                   <a href="#" class="btn btn-outline-success text-dark">
-                                    <i class="far fa-credit-card"> Pagar ahora</i>
-                                </a>
-                                <a href="#" class="btn btn-outline-danger text-dark">
-                                    <i class="fas fa-eraser"> Limpiar carrito</i>
-                                </a>
+                                   <p class="font-weight-bold"><h3>Subtotal del carrito:</h3><h2>${{$subtotal}}</h2></p>
+                               </div>
+                               <div class="row m-0 p-0">
+                                 <div class="col-6 text-center">
+                                <form action="{{route('carrito.index')}}" method="POST">
+                                  @csrf
+                                  <button type="submit" class="btn btn-outline-success color-negro"><i class="far fa-credit-card"> Pagar ahora</i></button>
+                                </form>
+                              </div>
+                              <div class="col-6 text-center">
+                                <form action="{{route('carrito.limpiar')}}" method="POST">
+                                  @csrf
+                                  <button type="submit" class="btn btn-outline-danger color-negro"><i class="fas fa-eraser"> Limpiar carrito</i></button>
+                                </form>
+                              </div>
                                </div>
                         </div>
                     </div>
@@ -127,26 +159,68 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css"></script>
+        <script src="{{asset('../js/modoNocturno.js')}}"></script>
 
+    @if (session('eliminar')== 'ok')
+
+        <script>
+          Swal.fire(
+        'Eliminado!',
+        'El elemento ha sido eliminado del carrito.',
+        'success')
+        </script>
+            
+        @endif
+    
+    
+    
+    
+    
     <script>
+          
+      $('.formulario-eliminar-carrito').submit(function(e){
+        e.preventDefault();
+
         Swal.fire({
-  title: '¿Deseas eliminar este elemento del carrito?',
-  text: " ¿Estas seguro de eliminar del carrito?",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, borralo!',
-  cancelButtonText: 'Cancelar'
+title: '¿Deseas quitar este libro del carrito?',
+text: " Este libro se quitara de tu carrito de compras",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '¡Si, borralo!',
+cancelButtonText: 'Cancelar'
 }).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'Eliminado!',
-      'El elemento ha sido eliminado.',
-      'success'
-    )
-  }
+if (result.isConfirmed) {
+  /*Swal.fire(
+    'Eliminado!',
+    'El elemento ha sido eliminado.',
+    'success'
+  )*/
+  this.submit();
+}
 })
-    </script>
+      });
+      /*Swal.fire({
+title: '¿Deseas eliminar este elemento del carrito?',
+text: " ¿Estas seguro de eliminar del carrito?",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '¡Si, borralo!',
+cancelButtonText: 'Cancelar'
+}).then((result) => {
+if (result.isConfirmed) {
+  Swal.fire(
+    'Eliminado!',
+    'El elemento ha sido eliminado.',
+    'success'
+  )
+}
+})*/
+
+
+</script>
 </body>
 </html>
