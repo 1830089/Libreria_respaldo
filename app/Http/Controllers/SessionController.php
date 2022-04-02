@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Cart;
+
 class SessionController extends Controller
 {
     public function create(){
@@ -26,6 +28,7 @@ class SessionController extends Controller
     }
 
     public function destroy(){
+        Cart::clear();
         auth()->logout();
 
         return redirect()->to('/');

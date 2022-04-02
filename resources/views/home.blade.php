@@ -200,5 +200,17 @@
       </div>
     </footer>
   -->
-  
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css"></script>
 <script src="{{asset('../js/modoNocturno.js')}}"></script>
+@if (session('eliminar')== 'ok')
+
+        <script>
+          Swal.fire(
+        ':(',
+        'se han agotado las unidades de este producto.',
+        'info');
+        </script>
+            
+        @endif

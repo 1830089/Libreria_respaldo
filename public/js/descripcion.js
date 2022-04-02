@@ -16,7 +16,10 @@ incrementar.addEventListener("click", ()=>{
     console.log(cantidad);
     valor.setAttribute('value',numero);
     }else{
-
+        Swal.fire(
+            ':(',
+            'se han agotado las unidades de este producto.',
+            'info');
     }
 });
 
