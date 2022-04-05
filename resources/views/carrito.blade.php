@@ -128,8 +128,9 @@
                                </div>
                                <div class="row m-0 p-0">
                                  <div class="col-6 text-center">
-                                <form action="{{route('carrito.index')}}" method="POST">
+                                <form action="{{route('carrito.pagar')}}" method="POST">
                                   @csrf
+                                  <input type="hidden" name="subtotal" value="{{$subtotal}}">
                                   <button type="submit" class="btn btn-outline-success color-negro"><i class="far fa-credit-card"> Pagar ahora</i></button>
                                 </form>
                               </div>
@@ -167,6 +168,18 @@
           Swal.fire(
         'Eliminado!',
         'El elemento ha sido eliminado del carrito.',
+        'success')
+        </script>
+            
+        @endif
+
+
+        @if (session('agregado')== 'ok')
+
+        <script>
+          Swal.fire(
+        'compra exitosa!',
+        'su compra se realizo con exito.',
         'success')
         </script>
             

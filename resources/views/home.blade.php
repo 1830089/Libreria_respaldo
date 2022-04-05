@@ -81,6 +81,9 @@
       <div class="carousel-inner text-dark">
         <div class="carousel-item active">
           <div class="container">
+            
+
+
             <div class="row">
                 <div class="col-md-6 text-center justify-content-center align-self-center">
                     <p class="titulo-letra">{{$busqueda->nombre_libro}}</p>
@@ -91,6 +94,9 @@
                   <img class="img2" src="{{$busqueda->ruta}}" alt="First slide"> 
                </div>
             </div>
+
+
+
         </div>
         </div>
         

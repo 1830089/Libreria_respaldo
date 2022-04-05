@@ -16,7 +16,7 @@ class AdminController extends Controller
 
         $libross= libro::orderBy('id', 'desc')->paginate(3);
         $libros= libro::all();
-        $busqueda= $libros->find(4);
+        $busqueda= $libros->find(1);
         return view("homeAdmin",compact('libros', 'libross', 'busqueda'));
     }
 

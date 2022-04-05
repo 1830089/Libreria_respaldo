@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Detalle;
 use Illuminate\Http\Request;
 use App\Models\libro;
+use App\Models\Venta;
 use Cart;
 use Darryldecode\Cart\Cart as CartCart;
+use Illuminate\Support\Facades\DB;
 
 class CarritoController extends Controller
 {
@@ -131,5 +134,46 @@ class CarritoController extends Controller
     public function clear(){
         Cart::clear();
         return redirect()->route('carrito.index')->with('eliminar','ok');
+    }
+
+    public function pagar(Request $request){
+
+
+        //llenar registro venta
+
+        
+        $venta= new Venta();
+
+        $venta->cliente_id= auth()->user()->id;
+        $venta->total= $request->subtotal;
+
+        $venta->save();
+
+        //llenar registro detalles venta
+
+        $registro= DB::table('ventas')->latest('created_at')->first();
+
+        foreach(Cart::getContent() as $productos){
+
+            $detalle_venta= new Detalle();
+
+            $libro= libro::find($productos->id);
+
+            $detalle_venta->pedido_id= $registro->id;
+            $detalle_venta->libro_id= $libro->id;
+            $detalle_venta->precio= $productos->price;
+            $detalle_venta->cantidad_producto= $productos->quantity;
+
+            $detalle_venta->save();
+
+            $libro->cantidad_producto=($libro->cantidad_producto - $productos->quantity);
+
+            $libro->save();
+
+        }
+
+
+        Cart::clear();
+        return redirect()->route('carrito.index')->with('agregado', 'ok');
     }
 }

@@ -78,16 +78,19 @@
       <div class="carousel-inner text-dark">
         <div class="carousel-item active">
           <div class="container">
+            
+
             <div class="row">
-                <div class="col-md-6 text-center justify-content-center align-self-center">
-                    <p class="titulo-letra">{{$busqueda->nombre_libro}}</p>
-                    <p class="color-gris">{{substr($busqueda->descripcion,0,200);}}</p>
-                    <a href="{{route('descripcionAdmin.index', $busqueda->id)}}" class="btn btn-outline-dark btn-lg color-gris"> Leer más</a>
-                </div>
-                <div class="col-6 m-0 py-0">
-                  <img class="img2" src="{{$busqueda->ruta}}" alt="First slide"> 
-               </div>
-            </div>
+              <div class="col-md-6 text-center justify-content-center align-self-center">
+                  <p class="titulo-letra">{{$busqueda->nombre_libro}}</p>
+                  <p class="color-gris">{{substr($busqueda->descripcion,0,200);}}</p>
+                  <a href="{{route('descripcionAdmin.index', $busqueda->id)}}" class="btn btn-outline-dark btn-lg color-gris"> Leer más</a>
+              </div>
+              <div class="col-6 m-0 py-0">
+                <img class="img2" src="{{$busqueda->ruta}}" alt="First slide"> 
+             </div>
+          </div>
+
         </div>
         </div>
 

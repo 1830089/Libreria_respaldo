@@ -34,7 +34,12 @@ class AgregarController extends Controller
 
     public function store_libro(Request $request){
         $request->validate([
-            'file' => 'required|Image'
+            'file' => 'required|Image',
+            'isbn' => 'required',
+            'titulo' => 'required',
+            'precio' => 'required',
+            'cantidad' => 'required',
+            'description' => 'required'
         ]);
         $imagen= $request->file('file')->store('public/Images');
 
@@ -58,6 +63,12 @@ class AgregarController extends Controller
     }
     public function store_autor(Request $request){
 
+        $this->validate(request(),[
+
+            'name'=> 'required'
+        ]
+        );
+
         $autor= new autor();
 
         $autor->nombre_autor= $request->name;
@@ -68,6 +79,15 @@ class AgregarController extends Controller
         //return $request;
     }
     public function store_editorial(Request $request){
+
+        $this->validate(request(),[
+
+            'name'=> 'required'
+        ]
+        );
+
+
+
         $editorial= new editorial();
 
         $editorial->nombre_editorial= $request->name;
@@ -79,6 +99,13 @@ class AgregarController extends Controller
         
     }
     public function store_categoria(Request $request){
+
+        $this->validate(request(),[
+
+            'name'=> 'required'
+        ]
+        );
+        
         $categoria= new categoria();
 
         $categoria->nombre_categoria= $request->name;

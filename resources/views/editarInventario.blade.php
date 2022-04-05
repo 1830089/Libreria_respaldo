@@ -155,6 +155,7 @@
                                       <label for="exampleFormControlFile1">Foto o imagen del libro</label>
                                       <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" accept="Image/*" value="{{$busqueda->ruta}}">
                                       </div>
+                                      <input type="hidden" name="ruta" value="{{$busqueda->ruta}}">
                                     <div class="d-grid">
                                       <button type="submit" class="btn btn-secondary">Actualizar datos</button>
                                       </div>

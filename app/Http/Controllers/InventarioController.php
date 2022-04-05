@@ -21,25 +21,43 @@ class InventarioController extends Controller
     }
 
     public function actualizar(libro $id,Request $request){
-        $request->validate([
-            'file' => 'required|Image'
-        ]);
-        $imagen= $request->file('file')->store('public/Images');
 
-        $url= Storage::url($imagen);
+        if($request->file){
+        
 
-        $id->isbn= $request->isbn;
-        $id->nombre_libro= $request->titulo;
-        $id->autor_id= $request->autor;
-        $id->editorial_id= $request->editorial;
-        $id->categoria_id= $request->categoria;
-        $id->precio= $request->precio;
-        $id->descripcion= $request->description;
-        $id->cantidad_producto= $request->cantidad;
-        $id->ruta= $url;
 
-        $id->save();
-        return redirect()->route('inventario-admin.index');
+            $imagen= $request->file('file')->store('public/Images');
+
+            $url= Storage::url($imagen);
+
+            $id->isbn= $request->isbn;
+            $id->nombre_libro= $request->titulo;
+            $id->autor_id= $request->autor;
+            $id->editorial_id= $request->editorial;
+            $id->categoria_id= $request->categoria;
+            $id->precio= $request->precio;
+            $id->descripcion= $request->description;
+            $id->cantidad_producto= $request->cantidad;
+            $id->ruta= $url;
+
+            $id->save();
+        }else{
+
+            $id->isbn= $request->isbn;
+            $id->nombre_libro= $request->titulo;
+            $id->autor_id= $request->autor;
+            $id->editorial_id= $request->editorial;
+            $id->categoria_id= $request->categoria;
+            $id->precio= $request->precio;
+            $id->descripcion= $request->description;
+            $id->cantidad_producto= $request->cantidad;
+            $id->ruta= $request->ruta;
+
+            $id->save();
+
+        }
+
+        return redirect()->route('inventario-admin.index')->with('actualizar','ok');
     }
 
     public function eliminar(libro $id){

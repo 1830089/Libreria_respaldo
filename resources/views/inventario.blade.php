@@ -152,6 +152,17 @@
             
         @endif
 
+        @if (session('actualizar')== 'ok')
+
+        <script>
+          Swal.fire(
+        'Actualizado!',
+        'El registro ha sido actualizado con exito!.',
+        'success')
+        </script>
+            
+        @endif
+
 
 
 

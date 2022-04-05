@@ -98,6 +98,12 @@
                                 <label for="isbn" class="form-label">Nombre categoria</label>
                                 <input type="text" class="form-control" name="name">
                             </div>
+                            @error('name')
+                              <div class="alert alert-danger" role="alert">
+                                *Nombre de la categoria es requerido
+                              </div>
+
+                            @enderror
                             <div class="d-grid">
                             <button type="submit" class="btn btn-secondary">Guardar Datos</button>
                             </div>

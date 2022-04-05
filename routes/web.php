@@ -44,6 +44,10 @@ Route::get('/logout',[SessionController::class, 'destroy'])
 Route::get('/carrito',[CarritoController::class, 'create'])->name('carrito.index')
 ->middleware('auth');
 
+
+Route::post('/carrito-pagar',[CarritoController::class, 'pagar'])->name('carrito.pagar')
+->middleware('auth');
+
 Route::post('/carrito-agregar',[CarritoController::class, 'add'])->name('carrito.agregar')
 ->middleware('auth');
 
@@ -59,14 +63,18 @@ Route::post('/carrito-remove',[CarritoController::class, 'remover'])->name('carr
 
 Route::get('/descripcion/{id}',[DescripcionController::class, 'create'])->name('descripcion.index');
 
-Route::get('/admin-descripcion/{id}',[DescripcionController::class, 'create_admin'])->name('descripcionAdmin.index');
+Route::get('/admin-descripcion/{id}',[DescripcionController::class, 'create_admin'])
+->middleware('auth.admin')
+->name('descripcionAdmin.index');
 
 
 /*   Rutas para el admin-------------------------------------------------------*/
 
 /*   Rutas del home del admin*/
 
-Route::get('/editar-libro/{id}',[AdminController::class, 'create_editar'])->name('editarAdmin.index');
+Route::get('/editar-libro/{id}',[AdminController::class, 'create_editar'])
+->middleware('auth.admin')
+->name('editarAdmin.index');
 
 
 

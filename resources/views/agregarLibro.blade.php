@@ -97,10 +97,22 @@
                               <label for="isbn" class="form-label">Isbn</label>
                               <input type="text" class="form-control" name="isbn">
                           </div>
+                          @error('isbn')
+                              <div class="alert alert-danger" role="alert">
+                                *isbn es requerido
+                              </div>
+
+                            @enderror
                           <div class="mb-4">
                             <label for="titulo" class="form-label">Título</label>
                              <input type="text" class="form-control" name="titulo">
                             </div>
+                            @error('titulo')
+                              <div class="alert alert-danger" role="alert">
+                                *Titulo es requerido
+                              </div>
+
+                            @enderror
                             <div class="mb-4">
                               <label for="autor" class="form-label">Autor</label>
                               <select name="autor" class="custom-select">
@@ -131,18 +143,44 @@
                                   <label for="precio" class="form-label">Precio</label>
                                    <input type="number" step="0.01" class="form-control" name="precio">
                                   </div>
+                                  @error('precio')
+                              <div class="alert alert-danger" role="alert">
+                                *precio del producto es requerido
+                              </div>
+
+                            @enderror
                                   <div class="mb-4">
                                     <label for="cantidad" class="form-label">Cantidad</label>
                                      <input type="number" class="form-control" name="cantidad">
                                     </div>
+                                    @error('cantidad')
+                              <div class="alert alert-danger" role="alert">
+                                *cantidad del producto es requerida
+                              </div>
+
+                            @enderror
                                     <div class="mb-4">
                                       <label for="description" class="form-label">Descripción</label>
                                        <textarea class="form-control" name="description" rows="8"></textarea>
                                       </div>
+
+                                      @error('description')
+                              <div class="alert alert-danger" role="alert">
+                                *descripción del producto es requerida
+                              </div>
+
+                            @enderror
                                     <div class="mb-4">
                                       <label for="exampleFormControlFile1">Foto o imagen del libro</label>
                                       <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" accept="Image/*">
                                       </div>
+
+                                      @error('file')
+                              <div class="alert alert-danger" role="alert">
+                                *imagen del producto es requerida
+                              </div>
+
+                            @enderror
                                     <div class="d-grid">
                                       <button type="submit" class="btn btn-secondary">Guardar Datos</button>
                                       </div>
