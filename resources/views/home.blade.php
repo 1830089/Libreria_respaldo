@@ -18,8 +18,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="col-md-7">
       <form class="form-inline my-2 ml-auto nav-right">
-        <input class="form-control-lg mr-sm-2 col-md-10 borde" type="search" placeholder="Buscar" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
       </form>
     </div>
     <div class="col-md-5">

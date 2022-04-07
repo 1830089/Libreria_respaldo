@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
 use App\Models\Detalle;
 use Illuminate\Http\Request;
 use App\Models\libro;
@@ -9,6 +10,7 @@ use App\Models\Venta;
 use Cart;
 use Darryldecode\Cart\Cart as CartCart;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CarritoController extends Controller
 {
@@ -169,11 +171,15 @@ class CarritoController extends Controller
             $libro->cantidad_producto=($libro->cantidad_producto - $productos->quantity);
 
             $libro->save();
-
         }
 
+        $details= 'articulos comprados con el id'.$registro->id;
+
+
+        Mail::to(auth()->user()->email)->send( new TestMail($details));
 
         Cart::clear();
         return redirect()->route('carrito.index')->with('agregado', 'ok');
     }
+
 }
