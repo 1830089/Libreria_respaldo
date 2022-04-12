@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         $libro->precio= 79.50;
         $libro->descripcion= "SIMONE DE BEAUVOIR, SIMONE WEIL, AYN RAND Y HANNAH ARENDT, CUATRO FILÓSOFAS LEGENDARIAS QUE LUCHARON POR NUESTRA LIBERTAD EN TIEMPOS OSCUROS. «Qué manera tan desenfadada, tan gozosa, de escribir sobre filosofía al más alto nivel.»";
         $libro->cantidad_producto= 20;
-        $libro->ruta= '/storage/Images/sAxaN3qBTy5OSus3p0LROQrrSwC4KyIoE1JA9pv5.jpg';
+        $libro->ruta= 'https://www.gandhi.com.mx/media/catalog/product/9/7/9786073813532_06bd.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=478&width=300&canvas=300:478';
 
         $libro->save();
     }
